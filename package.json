@@ -1,0 +1,21 @@
+{
+  "name": "jsml-test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc && webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^8.2.2",
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.1.3",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "@duox/jsml": "^1.0.6",
+    "path": "^0.12.7"
+  }
+}
