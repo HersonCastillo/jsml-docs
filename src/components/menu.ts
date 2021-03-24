@@ -2,7 +2,10 @@ import { Component, Updater } from '@duox/jsml';
 import { MenuItemProp, menuItems } from '../constants/menu-items';
 
 const MenuItem = ({ label, href, callback }: MenuItemProp): Component => {
-  const currentHashPath = location.hash;
+  let currentHashPath = location.hash;
+  if (currentHashPath === '') {
+    currentHashPath = 'home';
+  }
   const match = href.includes(currentHashPath);
 
   return {
@@ -29,6 +32,18 @@ export const Menu = (): Component => {
   const onMenuItemClicks = () => {
     setTimeout(() => updater.update(child()), 1);
   };
+
+  const onRouteChange = () => {
+    onMenuItemClicks();
+  };
+
+  setTimeout(() => {
+    // Removing existing events from re-rendering
+    window.removeEventListener('hashchange', onRouteChange);
+
+    window.addEventListener('hashchange', onRouteChange);
+  }, 1);
+
 
   const child = (): Component => ({
     tag: 'nav',
