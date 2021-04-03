@@ -1,14 +1,12 @@
-import { Component } from '@duox/jsml';
+import { Component, tag } from "@duox/jsml";
 
-export const Row = ({ className, children, style }: RowProps): Component => ({
-  tag: 'div',
-  classes: ['row', className!],
-  child: children,
-  style,
-});
+export const Row = ({ classNames, children, style }: RowProps) =>
+  tag('div', children, style, {
+    classNames: ['row', ...(classNames ?? [])]
+  });
 
 interface RowProps {
-  className?: string;
+  classNames?: string[];
   style?: Partial<CSSStyleDeclaration>;
   children: Component[];
 }

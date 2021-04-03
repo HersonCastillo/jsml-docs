@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const environment = process.env.NODE_ENV || 'dev';
 const isDevelopment = environment !== 'prod';
@@ -33,8 +34,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, 'public', 'index.html'),
+      favicon: path.join(__dirname, 'public', 'favicon.ico'),
       chunks: 'all',
       minify: !isDevelopment,
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
   ],
   module: {
@@ -51,6 +57,24 @@ module.exports = {
         options: {
           transpileOnly: true
         }
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          isDevelopment
+            ? 'style-loader'
+            : MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              sassOptions: {
+                outputStyle: 'compressed',
+              },
+            },
+          },
+        ],
       },
     ],
   },

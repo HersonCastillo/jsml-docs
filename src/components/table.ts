@@ -1,4 +1,4 @@
-import { Component } from '@duox/jsml';
+import { Component, tag } from '@duox/jsml';
 
 const THead = (child: Component): Component => ({
   tag: 'thead',
@@ -29,22 +29,22 @@ const Td = (child: string): Component => ({
 export const Table = (
   headers: TableHeader[],
   dataSet: any,
-): Component => {
-  return {
-    tag: 'table',
-    classes: ['table', 'table-bordered'],
-    child: [
-      THead(Tr(headers.map(({ label }) => Th(label)))),
-      TBody([
-        ...dataSet?.map((record: any) => (
-          Tr([
-            ...headers.map(({ dataIndex }) => Td(record[dataIndex]))
-          ])
-        ))
-      ]),
-    ],
-  };
-};
+): Component => tag('div', {
+  tag: 'table',
+  classNames: ['table', 'table-bordered'],
+  child: [
+    THead(Tr(headers.map(({ label }) => Th(label)))),
+    TBody([
+      ...dataSet?.map((record: any) => (
+        Tr([
+          ...headers.map(({ dataIndex }) => Td(record[dataIndex]))
+        ])
+      ))
+    ]),
+  ],
+}, null, {
+  classNames: ['table-responsive'],
+});
 
 export interface TableHeader {
   label: string;

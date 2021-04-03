@@ -1,9 +1,5 @@
-import { Page, PagePhase } from '@duox/jsml';
-import { Br } from '../components/br';
-import { Div } from '../components/div';
+import { Page, PagePhase, tag } from '@duox/jsml';
 import { Layout } from '../components/layout';
-import { P } from '../components/p';
-import { Span } from '../components/span';
 import { Table, TableHeader } from '../components/table';
 
 const copyCodeBlock = require('@pickra/copy-code-block');
@@ -18,7 +14,7 @@ export class ComponentsPage implements PagePhase {
     export const Div = ({ child }): Component => ({
       child,
       id: 'div-element',
-      classes: ['container', 'div-class'],
+      classNames: ['container', 'div-class'],
       style: {
         padding: '10px',
         margin: '5px',
@@ -73,7 +69,7 @@ export class ComponentsPage implements PagePhase {
       description: `ID prop of the HTML tag.`,
     },
     {
-      name: '<code>classes</code>',
+      name: '<code>classNames</code>',
       rules: 'optional',
       dataType: '<code>string[]</code>',
       description: `Class list of the HTML tag.`,
@@ -109,23 +105,23 @@ export class ComponentsPage implements PagePhase {
   render() {
     return [
       Layout('Components', [
-        Br,
-        P(`
+        tag('br'),
+        tag('p', `
           A <b>component</b> is one that will be rendered when the instance of a page is created, 
           it is an object with Javascript properties and this can be a tree of components, 
           one after another.
         `),
-        Span('Example'),
-        Br,
-        Br,
-        Div({ child: copyCodeBlock(this.componentExample) }),
-        Span('And, on a page you can use it'),
-        Br,
-        Br,
-        Div({ child: copyCodeBlock(this.pageUseOfComponent) }),
-        Span('What about the props that a component contains?'),
-        Br,
-        Br,
+        tag('span', 'Example'),
+        tag('br'),
+        tag('br'),
+        tag('div', copyCodeBlock(this.componentExample)),
+        tag('span', 'And, on a page you can use it'),
+        tag('br'),
+        tag('br'),
+        tag('div', copyCodeBlock(this.pageUseOfComponent)),
+        tag('span', 'What about the props that a component contains?'),
+        tag('br'),
+        tag('br'),
         Table(this.componentTableHeader, this.componentTableBody),
       ]),
     ];

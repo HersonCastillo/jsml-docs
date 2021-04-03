@@ -1,40 +1,33 @@
 import { Route } from '@duox/jsml';
-import { ComponentsPage } from '../pages/components.page';
-import { DIPage } from '../pages/di.page';
-import { HomePage } from '../pages/home.page';
-import { NotFound } from '../pages/not-found.page';
-import { PagesPage } from '../pages/pages.page';
-import { RoutingPage } from '../pages/routing.page';
-import { UpdaterPage } from '../pages/updater.page';
 
 export const routes: Route[] = [
   {
-    Page: HomePage,
+    page: import('../pages/home.page').then((c) => (c.HomePage)),
     default: true,
     path: 'home',
   },
   {
-    Page: PagesPage,
+    page: import('../pages/pages.page').then((c) => (c.PagesPage)),
     path: 'pages',
   },
   {
-    Page: ComponentsPage,
+    page: import('../pages/components.page').then((c) => (c.ComponentsPage)),
     path: 'components',
   },
   {
-    Page: RoutingPage,
+    page: import('../pages/routing.page').then((c) => (c.RoutingPage)),
     path: 'routing-system',
   },
   {
-    Page: DIPage,
+    page: import('../pages/di.page').then((c) => (c.DIPage)),
     path: 'di',
   },
   {
-    Page: UpdaterPage,
+    page: import('../pages/updater.page').then((c) => (c.UpdaterPage)),
     path: 'updater',
   },
   {
-    Page: NotFound,
+    page: import('../pages/not-found.page').then((c) => (c.NotFound)),
     path: '**',
   },
 ];

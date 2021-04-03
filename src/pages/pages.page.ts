@@ -1,9 +1,5 @@
-import { Page, PagePhase } from '@duox/jsml';
-import { Br } from '../components/br';
-import { Div } from '../components/div';
+import { Page, PagePhase, tag } from '@duox/jsml';
 import { Layout } from '../components/layout';
-import { P } from '../components/p';
-import { Span } from '../components/span';
 import { Table, TableHeader } from '../components/table';
 
 const copyCodeBlock = require('@pickra/copy-code-block');
@@ -47,16 +43,6 @@ export class PagesPage implements PagePhase {
   ];
 
   tableBody = [
-    {
-      name: '<code>key</code>',
-      defaultValue: '<code>undefined</code>',
-      rules: 'optional',
-      dataType: '<code>string</code>',
-      description: `
-        A unique name to the page indexed to the decorator, 
-        does not have a specific functionality but will be useful for future uses.
-      `,
-    },
     {
       name: '<code>title</code>',
       defaultValue: '<code>undefined</code>',
@@ -128,28 +114,28 @@ export class PagesPage implements PagePhase {
   render() {
     return [
       Layout('Pages', [
-        Br,
-        P(`A page is a <b>fragment</b> of the DOM. In this fragment must be the components that make up the page. <br>
+        tag('br'),
+        tag('p', `A page is a <b>fragment</b> of the DOM. In this fragment must be the components that make up the page. <br>
         A page is based on the PagePhase implementation (obtained from <code>@duox/jsml</code>), but for JSML to detect it as a page it must have a decorator 
         called <b>Page</b>. <br>By inserting this decorator, the class is now considered a page and therefore it can be used in the JSML Routing System or its instance 
         (rendered content) can be placed inside a <code>zone</code> (HTML element) with <b>PageResolver</b>.`),
-        Span('What does a page look like?'),
-        Br,
-        Br,
-        Div({ child: copyCodeBlock(this.pageClassDeclaration) }),
-        Span('Properties of <b>@Page</b> decorator...'),
-        Br,
-        Br,
+        tag('span', 'What does a page look like?'),
+        tag('br'),
+        tag('br'),
+        tag('div', copyCodeBlock(this.pageClassDeclaration)),
+        tag('span', 'Properties of <b>@Page</b> decorator...'),
+        tag('br'),
+        tag('br'),
         Table(this.tableHeaders, this.tableBody),
-        Br
+        tag('br')
       ]),
       Layout('PagePhase', [
-        Br,
-        Span('Now, maybe you have a question, what in the hell is "PagePhase"?'),
-        Br,
-        Br,
-        P(`Well, simply put, the abstract PagePhase class gives you available methods for the page's lifecycle.`),
-        Br,
+        tag('br'),
+        tag('span', 'Now, maybe you have a question, what in the hell is "PagePhase"?'),
+        tag('br'),
+        tag('br'),
+        tag('p', `Well, simply put, the abstract PagePhase class gives you available methods for the page's lifecycle.`),
+        tag('br'),
         Table(this.phaseTableHeaders, this.phaseTableBody),
       ]),
     ];

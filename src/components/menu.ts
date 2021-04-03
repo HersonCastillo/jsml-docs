@@ -10,10 +10,10 @@ const MenuItem = ({ label, href, callback }: MenuItemProp): Component => {
 
   return {
     tag: 'li',
-    classes: ['nav-item'],
+    classNames: ['nav-item'],
     child: {
       tag: 'a',
-      classes: ['nav-link', match ? 'active' : undefined!],
+      classNames: ['nav-link', match ? 'active' : undefined!],
       child: label,
       href,
     },
@@ -47,7 +47,7 @@ export const Menu = (): Component => {
 
   const child = (): Component => ({
     tag: 'nav',
-    classes: ['nav', 'flex-column', 'nav-pills'],
+    classNames: ['nav', 'flex-column', 'nav-pills'],
     key: 'navigation-items',
     child: [
       ...menuItems.map(({ label, href }) => (

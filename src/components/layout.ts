@@ -1,10 +1,6 @@
-import { Component } from "@duox/jsml";
-import { Div } from "./div";
-import { H } from "./h";
+import { Component, tag } from '@duox/jsml';
 
-export const Layout = (title: string, child: Component[]) => Div({
-  child: [
-    H(title, 3),
-    Div({ child }),
-  ],
-});
+export const Layout = (title: string, child: Component[]) => tag('fragment', [
+  tag('h3', title),
+  tag('div', child),
+]);

@@ -1,8 +1,5 @@
-import { Page, PagePhase } from '@duox/jsml';
-import { Br } from '../components/br';
-import { Div } from '../components/div';
+import { Page, PagePhase, tag } from '@duox/jsml';
 import { Layout } from '../components/layout';
-import { P } from '../components/p';
 
 const copyCodeBlock = require('@pickra/copy-code-block');
 
@@ -48,12 +45,12 @@ export class RoutingPage implements PagePhase {
   render() {
     return [
       Layout('Routing System', [
-        Br,
-        P(`
+        tag('br'),
+        tag('p', `
           The simple routing system is a direct comparison management with the browser's tab hash, 
           other routing packages can be used without any problem.
         `),
-        Div({ child: copyCodeBlock(this.routingExample) }),
+        tag('div', copyCodeBlock(this.routingExample)),
       ]),
     ];
   }

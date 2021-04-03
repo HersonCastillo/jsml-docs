@@ -1,12 +1,11 @@
-import { Component } from '@duox/jsml';
+import { Component, tag } from '@duox/jsml';
 
-export const Column = ({ child, className }: ColumnProps): Component => ({
-  tag: 'div',
-  classes: ['col', className!],
-  child,
-});
+export const Column = ({ child, classNames }: ColumnProps) =>
+  tag('div', child, null, {
+    classNames: ['col', ...(classNames ?? [])]
+  });
 
 interface ColumnProps {
   child: Component;
-  className?: string;
+  classNames?: string[];
 }

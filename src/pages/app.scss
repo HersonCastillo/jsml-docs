@@ -1,0 +1,13 @@
+@mixin max-screen($resolution) {
+  @media screen and (max-width: $resolution) {
+    @content;
+  }
+}
+
+.main-content {
+  // 768px for col-lg
+  @include max-screen(768px) {
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+}

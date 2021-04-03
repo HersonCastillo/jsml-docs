@@ -1,21 +1,18 @@
-import { Component } from '@duox/jsml';
-import { Div } from './div';
+import { Component, tag } from "@duox/jsml";
 
 export const Container = ({
   child,
-  classes,
-  key,
+  classNames,
+  style,
   ...rest
-}: ContainerProps): Component => Div({
-  child: child!,
-  classes: ['container', ...(classes ?? [])],
-  key,
-  ...rest,
-});
+}: ContainerProps): Component =>
+  tag('div', child!, style, {
+    classNames: ["container", ...(classNames ?? [])],
+    ...rest,
+  });
 
 interface ContainerProps {
   child?: Component | Component[];
-  key?: string;
-  classes?: string[];
+  classNames?: string[];
   style?: Partial<CSSStyleDeclaration>;
 }

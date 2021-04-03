@@ -1,9 +1,8 @@
-import { Page } from '@duox/jsml';
-import { Span } from '../components/span';
+import { Page, tag } from '@duox/jsml';
 
 @Page()
 export class NotFound {
   render() {
-    return [Span('Page not found :(')];
+    return [tag('span', 'Page not found :(')];
   }
 }
