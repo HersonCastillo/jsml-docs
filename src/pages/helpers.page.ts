@@ -3,10 +3,10 @@ import { RenderMarkdown } from '../components/markdown';
 import { MarkdownService } from '../services/markdown.service';
 
 @Page({
-  title: 'JSML | Components',
-  providers: [MarkdownService]
+  title: 'JSML | Helpers',
+  providers: [MarkdownService],
 })
-export class ComponentsPage {
+export class HelpersPage {
 
   constructor(
     private updater: Updater,
@@ -16,7 +16,7 @@ export class ComponentsPage {
   render() {
     return [
       RenderMarkdown(
-        'components',
+        'helpers',
         this.markdownService,
         this.updater,
       ),

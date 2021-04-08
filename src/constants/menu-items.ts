@@ -23,6 +23,10 @@ export const menuItems: MenuItemProp[] = [
     label: 'Updater',
     href: '#updater',
   },
+  {
+    label: 'Helpers',
+    href: '#helpers',
+  },
 ];
 
 export interface MenuItemProp {

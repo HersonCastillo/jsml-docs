@@ -1,7 +1,13 @@
+@import '~highlight.js/scss/github.scss';
+
 @mixin max-screen($resolution) {
   @media screen and (max-width: $resolution) {
     @content;
   }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
 .main-content {

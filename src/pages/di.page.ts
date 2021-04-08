@@ -1,16 +1,25 @@
-import { Page, PagePhase, tag } from '@duox/jsml';
-import { Layout } from '../components/layout';
+import { Page, Updater } from '@duox/jsml';
+import { RenderMarkdown } from '../components/markdown';
+import { MarkdownService } from '../services/markdown.service';
 
 @Page({
-  title: 'JSML | Dependency Injection'
+  title: 'JSML | Dependency Injection',
+  providers: [MarkdownService],
 })
-export class DIPage implements PagePhase {
+export class DIPage {
+
+  constructor(
+    private updater: Updater,
+    private markdownService: MarkdownService,
+  ) { }
+
   render() {
     return [
-      Layout('Dependency Injection', [
-        tag('br'),
-        tag('span', 'Working on that!'),
-      ]),
+      RenderMarkdown(
+        'di',
+        this.markdownService,
+        this.updater,
+      ),
     ];
   }
 }

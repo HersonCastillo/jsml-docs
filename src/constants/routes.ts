@@ -27,6 +27,10 @@ export const routes: Route[] = [
     path: 'updater',
   },
   {
+    page: import('../pages/helpers.page').then((c) => (c.HelpersPage)),
+    path: 'helpers',
+  },
+  {
     page: import('../pages/not-found.page').then((c) => (c.NotFound)),
     path: '**',
   },

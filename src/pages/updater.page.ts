@@ -1,16 +1,25 @@
-import { Page, PagePhase, tag } from '@duox/jsml';
-import { Layout } from '../components/layout';
+import { Page, Updater } from '@duox/jsml';
+import { RenderMarkdown } from '../components/markdown';
+import { MarkdownService } from '../services/markdown.service';
 
 @Page({
-  title: 'JSML | Updater'
+  title: 'JSML | Updater',
+  providers: [MarkdownService],
 })
-export class UpdaterPage implements PagePhase {
+export class UpdaterPage {
+
+  constructor(
+    private updater: Updater,
+    private markdownService: MarkdownService,
+  ) { }
+
   render() {
     return [
-      Layout('Updater', [
-        tag('br'),
-        tag('span', 'Working on that!'),
-      ]),
+      RenderMarkdown(
+        'updater',
+        this.markdownService,
+        this.updater,
+      ),
     ];
   }
 }

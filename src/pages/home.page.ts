@@ -1,27 +1,24 @@
-import { PagePhase, Page, tag } from '@duox/jsml';
-import { Layout } from '../components/layout';
-
-const copyCodeBlock = require('@pickra/copy-code-block');
+import { PagePhase, Page, Updater } from '@duox/jsml';
+import { RenderMarkdown } from '../components/markdown';
+import { MarkdownService } from '../services/markdown.service';
 
 @Page({
   title: 'JSML | Getting Started',
+  providers: [MarkdownService],
 })
 export class HomePage implements PagePhase {
+  constructor(
+    private updater: Updater,
+    private markdownService: MarkdownService
+  ) { }
+
   render() {
     return [
-      Layout('Getting Started', [
-        tag('br'),
-        tag('p', `
-          JSML is an interface library that collects some important definitions from other frameworks and puts them in one place,
-          why? basically that with this you can start to develop intelligent and effective systems.
-          This library is a learning medium, it should not be used for projects in production.
-          `),
-        tag('span', 'How you can start using it?'),
-        tag('br'),
-        tag('br'),
-        tag('div', copyCodeBlock('\nnpm i --save @duox/jsml')),
-        tag('span', 'And only that!'),
-      ]),
+      RenderMarkdown(
+        'getting-started',
+        this.markdownService,
+        this.updater,
+      ),
     ];
   }
 }
